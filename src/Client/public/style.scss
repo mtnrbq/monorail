@@ -1,0 +1,15 @@
+.full-width-center {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.notification-bar {
+    height: 75px;
+    margin: 5px;
+    border-style: dashed;
+    border-width: 1px;
+    border-color: darkblue;
+}

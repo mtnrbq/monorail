@@ -1,0 +1,38 @@
+apiVersion: 1
+
+providers:
+  - name: 'RED Metrics (classic histogram)'
+    type: file
+    options:
+      path: /otel-lgtm/grafana-dashboard-red-metrics-classic.json
+      foldersFromFilesStructure: false
+  - name: 'RED Metrics (exponential/native histogram)'
+    type: file
+    options:
+      path: /otel-lgtm/grafana-dashboard-red-metrics-native.json
+      foldersFromFilesStructure: false
+  - name: 'ASP.NET Core Metrics'
+    type: file
+    options:
+      path: /otel-lgtm/grafana-dashboard-aspnet-core.json
+      foldersFromFilesStructure: false
+  - name: 'ASP.NET Core Endpoints'
+    type: file
+    options:
+      path: /otel-lgtm/grafana-dashboard-aspnet-core-endpoint.json
+      foldersFromFilesStructure: false
+  - name: 'Dapr Actors'
+    type: file
+    options:
+      path: /otel-lgtm/grafana-dashboard-dapr-actor.json
+      foldersFromFilesStructure: false
+  - name: 'Dapr Sidecars'
+    type: file
+    options:
+      path: /otel-lgtm/grafana-dashboard-dapr-sidecar.json
+      foldersFromFilesStructure: false
+  - name: 'Dapr System Services'
+    type: file
+    options:
+      path: /otel-lgtm/grafana-dashboard-dapr-system-services.json
+      foldersFromFilesStructure: false

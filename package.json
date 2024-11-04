@@ -1,0 +1,35 @@
+{
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "start": "vite src/Client",
+        "build": "vite build -p"
+    },
+    "devDependencies": {
+        "@semantic-release/changelog": "^6.0.2",
+        "@semantic-release/exec": "^6.0.3",
+        "@semantic-release/git": "^10.0.1",
+        "@semantic-release/gitlab": "^13.2.1",
+        "@vitejs/plugin-react": "^4.3.1",
+        "sass": "^1.58.3",
+        "semantic-release": "^24.1.1",
+        "semantic-release-dotnet": "^1.0.0",
+        "vite": "^5.4.6",
+        "vite-plugin-mkcert": "^1.17.6"
+    },
+    "dependencies": {
+        "@emotion/react": "^11.13.3",
+        "@emotion/styled": "^11.13.0",
+        "@fortawesome/fontawesome-free": "^6.6.0",
+        "@lit-labs/motion": "^1.0.7",
+        "@lit/context": "^1.1.2",
+        "@microsoft/signalr": "^8.0.7",
+        "@mui/material": "^6.1.1",
+        "@sentry/browser": "^8.30.0",
+        "lit": "^3.1.0",
+        "lit-html": "^3.1.0",
+        "open-sans-fonts": "^1.6.2",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1"
+    }
+}
