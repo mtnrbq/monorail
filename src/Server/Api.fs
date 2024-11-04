@@ -55,7 +55,7 @@ let serviceApi: Api.ServiceApi =
                 Log.Debug "Invoking ServiceA()"
                 task {
                     try
-                        let proxy = ActorProxy.Create<Actors.IServiceA>(ActorId(aid), "ServiceA")
+                        let proxy = ActorProxy.Create<Actors.IActorA>(ActorId(aid), "ServiceA")
                         let! a = proxy.Foo()
                         Log.Debug a
                         return a
@@ -70,10 +70,10 @@ let serviceApi: Api.ServiceApi =
                 task {
                     match msg with
                     | "A" ->
-                        let proxy = ActorProxy.Create<Actors.IServiceA>(ActorId(aid), "ServiceB")
+                        let proxy = ActorProxy.Create<Actors.IActorA>(ActorId(aid), "ServiceB")
                         return! proxy.Foo()
                     | _ ->
-                        let proxy = ActorProxy.Create<Actors.IServiceB>(ActorId(aid), "ServiceB")
+                        let proxy = ActorProxy.Create<Actors.IActorB>(ActorId(aid), "ServiceB")
                         return! proxy.Bar()
                 }
                 |> Async.AwaitTask

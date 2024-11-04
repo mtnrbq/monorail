@@ -17,10 +17,10 @@ type IUserActor =
     abstract GetGroups: unit: unit -> Task<string[]>
     abstract GetRoles: unit: unit -> Task<string[]>
 
-type IServiceA =
+type IActorA =
     inherit IActor
     abstract Foo: unit: unit -> Task<string>
 
-type IServiceB =
+type IActorB =
     inherit IActor
     abstract Bar: unit: unit -> Task<string>

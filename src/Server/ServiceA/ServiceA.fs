@@ -11,7 +11,7 @@ type ServiceA(host: ActorHost) =
     let mutable count = 0
     member this.myId = this.Id.GetId()
 
-    interface IServiceA with
+    interface IActorA with
         member this.Foo() =
             task {
                 count <- count + 1

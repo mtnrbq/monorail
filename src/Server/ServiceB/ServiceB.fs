@@ -12,10 +12,10 @@ type ServiceB(host: ActorHost) =
     let mutable count = 0
     member this.myId = this.Id.GetId()
 
-    interface IServiceA with
+    interface IActorA with
         member this.Foo() =
             task {
-                let proxy = ActorProxy.Create<IServiceA>(this.Id, "ServiceA")
+                let proxy = ActorProxy.Create<IActorA>(this.Id, "ServiceA")
                 let! s = proxy.Foo()
                 count <- count + 1
                 let msg = $"ServiceB.Foo(): actor={this.myId}, silo={appId}, count={count} -> {s}"
@@ -23,7 +23,7 @@ type ServiceB(host: ActorHost) =
                 return msg
             }
 
-    interface IServiceB with
+    interface IActorB with
         member this.Bar() =
             task {
                 count <- count + 1
