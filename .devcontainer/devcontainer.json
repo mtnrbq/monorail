@@ -1,11 +1,23 @@
 {
-	"name": "SAFE",
-	"dockerFile": "Dockerfile",
-	"appPort": [8080, 8085],
-	"extensions": [
-		"ionide.ionide-fsharp",
-        "ms-dotnettools.csharp",
-        "editorconfig.editorconfig",
-        "msjsdiag.debugger-for-chrome"
-	]
+  "name": "SAFE",
+  "runArgs": ["--network=host"],
+  "dockerFile": "Dockerfile",
+  "appPort": [8080, 8085],
+  "remoteUser": "vscode",
+  "mounts": [
+      "type=bind,source=${localWorkspaceFolder}/.devcontainer/podman_key,target=/home/vscode/.ssh/podman_key",
+      "type=bind,source=${localWorkspaceFolder}/.devcontainer/known_hosts,target=/home/vscode/.ssh/known_hosts"
+  ],
+  "initializeCommand": "powershell.exe -File ${localWorkspaceFolder}\\.devcontainer\\copy-key.ps1",
+  "customizations": {
+      "vscode": {
+          "extensions": [
+              "ionide.ionide-fsharp",
+              "ms-dotnettools.csharp",
+              "editorconfig.editorconfig",
+              "msjsdiag.debugger-for-chrome"
+          ]
+      }
+  },
+  "postCreateCommand": "sudo mkdir -p /home/vscode/.ssh && sudo chmod 700 /home/vscode/.ssh && sudo chown vscode:vscode /home/vscode/.ssh && sudo chmod 600 /home/vscode/.ssh/podman_key && sudo chown vscode:vscode /home/vscode/.ssh/podman_key && podman system connection add podman-machine-default --identity /home/vscode/.ssh/podman_key ssh://user@host.docker.internal:51136/run/user/1000/podman/podman.sock"
 }

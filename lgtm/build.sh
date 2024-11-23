@@ -1,3 +1,3 @@
 #!/bin/sh
 
-docker build -t otel-lgtm:local .
+podman build -t otel-lgtm:local .

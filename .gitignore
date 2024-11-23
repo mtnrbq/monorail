@@ -18,3 +18,5 @@ build/
 *.db
 build.fsx.lock
 _*.yaml
+podman_key
+known_hosts

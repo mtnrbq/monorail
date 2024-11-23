@@ -1,23 +1,32 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0
 
-# Add keys and sources lists
-RUN apt-get update && apt-get install -y ca-certificates gnupg
-RUN mkdir -p /etc/apt/keyrings
-RUN curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
-ENV NODE_MAJOR=20
-RUN echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list
+# Create vscode user (if not exists)
+RUN groupadd -g 1000 vscode || true && \
+    useradd -m -s /bin/bash -u 1000 -g 1000 vscode
 
-# Install node, 7zip, yarn, git, process tools
-RUN apt-get update \
-    && apt-get install -y nodejs p7zip-full git procps ssh-client
+# Install all required packages
+RUN apt-get update && \
+    apt-get install -y \
+    nodejs \
+    p7zip-full \
+    git \
+    procps \
+    ssh-client \
+    sudo \
+    podman && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
-# Clean up
-RUN apt-get autoremove -y \
-    && apt-get clean -y \
-    && rm -rf /var/lib/apt/lists/*
+# Configure sudo access for vscode user
+RUN echo "vscode ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/vscode && \
+    chmod 0440 /etc/sudoers.d/vscode
 
-ENV PATH="/root/.dotnet/tools:${PATH}"
+# Set up Podman configuration for remote access
+RUN mkdir -p /home/vscode/.config/containers && \
+    echo '[engine]\nremote = true\nconnections = ["podman-machine-default"]\n[containers]\nuserns = "host"\nutsns = "host"\nipcns = "host"\nnetns = "host"\ncgroupns = "host"\ncgroups = "enabled"' > /home/vscode/.config/containers/containers.conf && \
+    chown -R vscode:vscode /home/vscode/.config
 
-# Copy endpoint specific user settings into container to specify
-# .NET Core should be used as the runtime.
-COPY settings.vscode.json /root/.vscode-remote/data/Machine/settings.json
+ENV PATH="/root/.dotnet/tools:/home/vscode/.dotnet/tools:${PATH}"
+
+# Switch to vscode user
+USER vscode

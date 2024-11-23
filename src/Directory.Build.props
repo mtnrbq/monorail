@@ -1,0 +1,8 @@
+<Project>
+    <PropertyGroup Condition="'$(container)' == 'podman'">
+        <IntermediateOutputPath>/tmp/$(USER)/project/obj/</IntermediateOutputPath>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Update="FSharp.Core" Version="8.0.401" />
+    </ItemGroup>
+</Project>
