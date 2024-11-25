@@ -14,6 +14,7 @@ RUN apt-get update && \
     ssh-client \
     sudo \
     podman && \
+    wget -q https://raw.githubusercontent.com/dapr/cli/master/install/install.sh -O - | /bin/bash && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 

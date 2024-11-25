@@ -19,5 +19,5 @@
           ]
       }
   },
-  "postCreateCommand": "sudo mkdir -p /home/vscode/.ssh && sudo chmod 700 /home/vscode/.ssh && sudo chown vscode:vscode /home/vscode/.ssh && sudo chmod 600 /home/vscode/.ssh/podman_key && sudo chown vscode:vscode /home/vscode/.ssh/podman_key && podman system connection add podman-machine-default --identity /home/vscode/.ssh/podman_key ssh://user@host.docker.internal:51136/run/user/1000/podman/podman.sock"
+  "postCreateCommand": "sudo mkdir -p /home/vscode/.ssh && sudo chmod 700 /home/vscode/.ssh && sudo chown vscode:vscode /home/vscode/.ssh && sudo chmod 600 /home/vscode/.ssh/podman_key && sudo chown vscode:vscode /home/vscode/.ssh/podman_key && podman system connection add podman-machine-default --identity /home/vscode/.ssh/podman_key ssh://user@host.docker.internal:51136/run/user/1000/podman/podman.sock  && dapr init -s"
 }

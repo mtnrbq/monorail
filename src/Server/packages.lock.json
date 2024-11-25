@@ -938,7 +938,7 @@
         "dependencies": {
           "Dapr.Actors": "[1.14.0, )",
           "Dapr.Client": "[1.14.0, )",
-          "FSharp.Core": "[8.0.400, )",
+          "FSharp.Core": "[8.0.403, )",
           "FSharp.Data": "[6.4.0, )",
           "FSharpPlus": "[1.6.1, )",
           "Serilog": "[4.0.1, )",
